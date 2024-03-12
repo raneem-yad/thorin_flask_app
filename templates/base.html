@@ -8,14 +8,12 @@
     <title>Flask App</title>
 </head>
 <body>
-<nav>
-    <ul>
+    <nav>
         <li><a href="{{url_for('index')}}">Home</a></li>
         <li><a href="{{url_for('about')}}">About</a></li>
         <li><a href="{{url_for('contact')}}">Contact</a></li>
-
-    </ul>
-</nav>
-<h1>About Page</h1>
+    </nav>
+    {% block main_content %}
+    {% endblock %}
 </body>
 </html>

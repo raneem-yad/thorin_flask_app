@@ -1,10 +1,13 @@
 import os
 import json
-from flask import Flask, render_template
+from flask import Flask, render_template, request , flash
+if os.path.exists("env.py"):
+    import env
+
 
 # we put here the module name and because we have one module we write __name__ which is the default module
 app = Flask(__name__)
-
+app.secret_key = env.environ.get("SECRET_KEY")
 
 @app.route("/")
 def index():
@@ -30,8 +33,14 @@ def about_member(member_name):
     return render_template("member.html", member=member)
 
 
-@app.route("/contact")
+@app.route("/contact", methods=["GET","POST"])
 def contact():
+    if request.method == "POST":
+        # if the key not exist it will fill it with none
+        # print(request.form.get("name"))
+        # if the key not exist it will throw exception
+        # print(request.form["email"])
+        flash(f"Thanks {request.form.get('name')}, we have received your message!")
     return render_template("contact.html", page_title="Contact")
 
 

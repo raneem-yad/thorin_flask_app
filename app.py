@@ -7,7 +7,7 @@ if os.path.exists("env.py"):
 
 # we put here the module name and because we have one module we write __name__ which is the default module
 app = Flask(__name__)
-app.secret_key = env.environ.get("SECRET_KEY")
+app.secret_key = os.environ.get("SECRET_KEY")
 
 @app.route("/")
 def index():
